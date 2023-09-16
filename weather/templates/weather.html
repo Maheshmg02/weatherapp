@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://kit.fontawesome.com/d14d9a5756.js" crossorigin="anonymous"></script>
+</head>
+<body style="background-color:#b6f0bb;">
+<nav class="row" style="background-color:#5c96ed; color:white;">
+    <h1 class="col-md-3 text-center">Weather</h1>
+
+</nav>
+
+<div class="container" >
+    <div class="row" >
+        <form method="get" action="{% url 'index' %}" >
+
+            <div class="input-group" style="padding-top:150px;">
+                <input class="form-control" type="text" placeholder="Search" name="city">
+                <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+<div class=" container" style="padding-top:100px;">
+    {% if city %}
+    <div class="row"  >
+        <h3>Weather for {{city}}</h3>
+        <p>{{region}}</p>
+        <img src="{{ weather_icons.0 }}" alt="Weather Icon" style="height:50px; width:85px;">
+        <h5>Temperature : {{temperature}} °C </h5>
+        <h5>Description : {{description}}</h5>
+        <h5>Humidity : {{humidity}}</h5>
+
+        {% elif error_message %}
+        <p style="color:red;">{{ error_message }}!</p>
+
+    </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>
